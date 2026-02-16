@@ -1,0 +1,70 @@
+===================================================
+  Distributed Proof Coordinator
+  Waiting for 3 workers to register...
+===================================================
+Completed 256.0 KiB/564.1 KiB (1.9 MiB/s) with 1 file(s) remainingCompleted 512.0 KiB/564.1 KiB (3.8 MiB/s) with 1 file(s) remainingCompleted 564.1 KiB/564.1 KiB (4.1 MiB/s) with 1 file(s) remainingdownload: s3://invisible-cuda-proof-833857788167/dist_proof-x86_64 to tmp/dist_proof
+  2/3 workers registered... (0s)
+All 3 workers registered
+
+Running distributed proof against workers:  172.31.1.217:9741 172.31.10.164:9741 172.31.6.64:9741
+
+╔══════════════════════════════════════════════════════════╗
+║  Invisible CUDA — Distributed Multi-Node Proof          ║
+╚══════════════════════════════════════════════════════════╝
+
+── Connecting to 3 workers ─────────────────────────────
+  OK  172.31.1.217:9741
+  OK  172.31.10.164:9741
+  OK  172.31.6.64:9741
+
+── Worker Capabilities ─────────────────────────────────
+  172.31.1.217:9741  CPU (2 threads) (CPU) — 2 CUs, 0 MB
+  172.31.10.164:9741  CPU (2 threads) (CPU) — 2 CUs, 0 MB
+  172.31.6.64:9741  CPU (2 threads) (CPU) — 2 CUs, 0 MB
+  Total: 6 compute units across 3 workers
+
+── Ping Latency ───────────────────────────────────────
+  172.31.1.217:9741  92328 us
+  172.31.10.164:9741  42246 us
+  172.31.6.64:9741  40954 us
+
+── Compile Kernel ─────────────────────────────────────
+  172.31.1.217:9741  compiled
+  172.31.10.164:9741  compiled
+  172.31.6.64:9741  compiled
+  PASS  Compile kernel on all workers
+
+── Distributed Vector Add ──────────────────────────────
+  N = 65536 elements, 3 workers, 85 blocks/worker
+  PASS  Distributed VecAdd 65536 elements across 3 workers
+    Time: 2619.7ms, Throughput: 0.00 GB/s (including network)
+
+── Large Distributed Vector Add (1M elements) ───────────
+  PASS  Large VecAdd 1M elements across 3 workers
+    Time: 2802.5ms, Throughput: 0.00 GB/s
+
+── Shutting down workers ───────────────────────────────
+  172.31.1.217:9741  shutdown OK
+  172.31.10.164:9741  shutdown OK
+  172.31.6.64:9741  shutdown OK
+
+══════════════════════════════════════════════════════════
+  RESULT: ALL 3 TESTS PASSED
+  Distributed compute across 3 workers: VERIFIED
+  Total time: 5.9s
+══════════════════════════════════════════════════════════
+
+--- JSON_START ---
+{
+  "format": "invisible-cuda-dist-proof",
+  "workers": 3,
+  "total_compute_units": 6,
+  "tests_passed": 3,
+  "tests_failed": 0,
+  "distributed_vecadd_64k_ms": 2619.7,
+  "distributed_vecadd_64k_gbps": 0.00,
+  "distributed_vecadd_1m_ms": 2802.5,
+  "distributed_vecadd_1m_gbps": 0.00,
+  "total_time_s": 5.9
+}
+--- JSON_END ---

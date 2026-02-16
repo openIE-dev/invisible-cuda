@@ -1,0 +1,468 @@
+===================================================
+  Instance: t3-small
+  Type:     t3.small
+  Arch:     x86_64
+  GPU:      none
+  Price:    $0.021/hr
+  Backend:  CPU
+  Proves:   Budget x86
+  Mode:     standard
+===================================================
+
+Completed 256.0 KiB/875.1 KiB (3.8 MiB/s) with 1 file(s) remainingCompleted 512.0 KiB/875.1 KiB (7.4 MiB/s) with 1 file(s) remainingCompleted 768.0 KiB/875.1 KiB (10.8 MiB/s) with 1 file(s) remainingCompleted 875.1 KiB/875.1 KiB (12.1 MiB/s) with 1 file(s) remainingdownload: s3://invisible-cuda-proof-833857788167/proof-x86_64 to tmp/proof
+Completed 256.0 KiB/905.8 KiB (3.7 MiB/s) with 1 file(s) remainingCompleted 512.0 KiB/905.8 KiB (7.3 MiB/s) with 1 file(s) remainingCompleted 768.0 KiB/905.8 KiB (10.9 MiB/s) with 1 file(s) remainingCompleted 905.8 KiB/905.8 KiB (12.7 MiB/s) with 1 file(s) remainingdownload: s3://invisible-cuda-proof-833857788167/limits_proof-x86_64 to tmp/limits_proof
+Completed 256.0 KiB/2.7 MiB (3.6 MiB/s) with 1 file(s) remainingCompleted 512.0 KiB/2.7 MiB (7.1 MiB/s) with 1 file(s) remainingCompleted 768.0 KiB/2.7 MiB (10.5 MiB/s) with 1 file(s) remainingCompleted 1.0 MiB/2.7 MiB (13.7 MiB/s) with 1 file(s) remaining  Completed 1.2 MiB/2.7 MiB (16.8 MiB/s) with 1 file(s) remaining  Completed 1.5 MiB/2.7 MiB (19.9 MiB/s) with 1 file(s) remaining  Completed 1.8 MiB/2.7 MiB (22.8 MiB/s) with 1 file(s) remaining  Completed 2.0 MiB/2.7 MiB (25.7 MiB/s) with 1 file(s) remaining  Completed 2.2 MiB/2.7 MiB (28.5 MiB/s) with 1 file(s) remaining  Completed 2.5 MiB/2.7 MiB (31.4 MiB/s) with 1 file(s) remaining  Completed 2.7 MiB/2.7 MiB (33.2 MiB/s) with 1 file(s) remaining  download: s3://invisible-cuda-proof-833857788167/coverage_proof-x86_64 to tmp/coverage_proof
+Starting compatibility proof at Mon Feb 16 17:22:53 UTC 2026
+╔══════════════════════════════════════════════════════════════╗
+║       INVISIBLE CUDA — Universal Backend Proof (v2)        ║
+╚══════════════════════════════════════════════════════════════╝
+
+System:
+  OS:   linux
+  Arch: x86_64
+  Mode: standard
+Hardware Fingerprint:
+  CPU:          Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz
+  Cores:        2 logical, 1 physical
+  Frequency:    2500 MHz
+  RAM:          1.9 GB
+  Memory:       DDR4 @ 2666 MT/s, 1 channel(s)
+  Peak BW:      21.3 GB/s (theoretical)
+  NUMA:         1 node(s)
+  Cache:        L1d=32 KiB (1 instance) L1i=32 KiB (1 instance) L2=1 MiB (1 instance) L3=35.8 MiB (1 instance)
+  ISA:          sse4_2 avx avx2 avx512f
+  Storage:      NVMe SSD (8G)
+  Kernel:       6.1.161-183.298.amzn2023.x86_64
+  Microcode:    0x5003901
+
+Backend: CPU
+Device:  CPU (2 threads)
+Memory:  0 B (0 bytes)
+Compute: 2 units
+Max threads/block: 1024
+Features: shared_mem=true atomics=true fp16=false warp=1
+
+── Correctness Tests ──────────────────────────────────────────
+  PASS  Vector Add (64/1K/64K) (20.3ms)
+  PASS  Vector Mul (4096) (1.1ms)
+  PASS  FMA x*y+z (2048) (0.6ms)
+  PASS  SAXPY a*x+y (4096) (1.3ms)
+  PASS  Memory round-trip (64B..4MB) (15.2ms)
+  PASS  Memset (4KB..1MB, 4 patterns) (3.0ms)
+  PASS  D2D copy (4KB..1MB) (2.2ms)
+  PASS  Multi alloc+free (150 buffers) (1.0ms)
+  PASS  Multi-kernel dispatch (add+mul) (0.8ms)
+
+── BLAS Correctness ───────────────────────────────────────────
+  PASS  SGEMM (32..256, 4 sizes) (47.7ms)
+  PASS  SGEMM alpha=2.5 beta=0.5 (0.5ms)
+  PASS  BLAS SAXPY (0.0ms)
+  PASS  BLAS SDOT (0.0ms)
+  PASS  BLAS SNRM2 (0.0ms)
+
+── Performance Benchmarks ─────────────────────────────────────
+  NOTE: Performance numbers are informational. They measure execution
+  throughput, not correctness. Variations across hardware are expected
+  and reflect memory/compute class differences, not compatibility gaps.
+  Memory normalization: DDR4 @ 2666 MT/s × 1 ch = 21.3 GB/s (factor=0.83x vs DDR4-3200×1)
+
+  Mem BW (256.0 KB): 21.54 GB/s
+    (normalized: 25.85 GB/s @ DDR4-3200×1 equivalent)
+  Mem BW (1.0 MB): 11.11 GB/s
+    (normalized: 13.34 GB/s @ DDR4-3200×1 equivalent)
+  Mem BW (4.0 MB): 6.77 GB/s
+    (normalized: 8.13 GB/s @ DDR4-3200×1 equivalent)
+  Mem BW (16.0 MB): 4.26 GB/s
+    (normalized: 5.12 GB/s @ DDR4-3200×1 equivalent)
+  VecAdd (39.1 KB): 0.04 GB/s
+    (normalized: 0.04 GB/s @ DDR4-3200×1 equivalent)
+  VecAdd (390.6 KB): 0.04 GB/s
+    (normalized: 0.05 GB/s @ DDR4-3200×1 equivalent)
+  VecAdd (3.8 MB): 0.06 GB/s
+    (normalized: 0.07 GB/s @ DDR4-3200×1 equivalent)
+  SGEMM 128x128: 1.63 GFLOPS
+    (normalized: 0.653 GFLOPS/core/GHz)
+  SGEMM 256x256: 1.57 GFLOPS
+    (normalized: 0.629 GFLOPS/core/GHz)
+  SGEMM 512x512: 1.12 GFLOPS
+    (normalized: 0.448 GFLOPS/core/GHz)
+  SGEMM 1024x1024: 604.27 MFLOPS
+    (normalized: 0.242 GFLOPS/core/GHz)
+  SGEMM 2048x2048: 208.92 MFLOPS
+    (normalized: 0.084 GFLOPS/core/GHz)
+  Kernel latency: 0.53 us
+  Alloc+Free (4KB): 5937572.36 ops/s
+
+── Stress Tests ───────────────────────────────────────────────
+    Max allocation: 1.0 GB
+    10K dispatches in 1.76s (5681 kernels/s)
+  PASS  Large allocation (up to 1GB) (2181.1ms)
+  PASS  Rapid kernels (10K dispatches) (1760.3ms)
+  PASS  500 concurrent buffers (2.8ms)
+
+══════════════════════════════════════════════════════════════
+  RESULT: ALL 17 TESTS PASSED on CPU (CPU (2 threads))
+  CUDA compatibility: VERIFIED
+  Total time: 371.4s (17 tests, 14 benchmarks)
+══════════════════════════════════════════════════════════════
+
+--- JSON_START ---
+{
+  "format": "invisible-cuda-proof-v3",
+  "backend": "CPU",
+  "device": "CPU (2 threads)",
+  "os": "linux",
+  "arch": "x86_64",
+  "compute_units": 2,
+  "memory_bytes": 0,
+  "max_threads_per_block": 1024,
+  "has_shared_memory": true,
+  "has_atomics": true,
+  "hw_cpu_model": "Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz",
+  "hw_cores_logical": 2,
+  "hw_cores_physical": 1,
+  "hw_cpu_mhz": 2500,
+  "hw_ram_bytes": 2006278144,
+  "hw_mem_type": "DDR4",
+  "hw_mem_speed_mt": 2666,
+  "hw_mem_channels": 1,
+  "hw_mem_channels_estimated": false,
+  "hw_mem_bandwidth_gbps": 21.3,
+  "hw_numa_nodes": 1,
+  "hw_cache_l1d": "32 KiB (1 instance)",
+  "hw_cache_l2": "1 MiB (1 instance)",
+  "hw_cache_l3": "35.8 MiB (1 instance)",
+  "hw_isa": "sse4_2 avx avx2 avx512f",
+  "hw_storage": "NVMe SSD",
+  "hw_kernel": "6.1.161-183.298.amzn2023.x86_64",
+  "hw_microcode": "0x5003901",
+  "hw_mem_bw_factor": 0.833,
+  "tests": [
+    {"name": "Vector Add (64/1K/64K)", "passed": true, "ms": 20.3, "error": null},
+    {"name": "Vector Mul (4096)", "passed": true, "ms": 1.1, "error": null},
+    {"name": "FMA x*y+z (2048)", "passed": true, "ms": 0.6, "error": null},
+    {"name": "SAXPY a*x+y (4096)", "passed": true, "ms": 1.3, "error": null},
+    {"name": "Memory round-trip (64B..4MB)", "passed": true, "ms": 15.2, "error": null},
+    {"name": "Memset (4KB..1MB, 4 patterns)", "passed": true, "ms": 3.0, "error": null},
+    {"name": "D2D copy (4KB..1MB)", "passed": true, "ms": 2.2, "error": null},
+    {"name": "Multi alloc+free (150 buffers)", "passed": true, "ms": 1.0, "error": null},
+    {"name": "Multi-kernel dispatch (add+mul)", "passed": true, "ms": 0.8, "error": null},
+    {"name": "SGEMM (32..256, 4 sizes)", "passed": true, "ms": 47.7, "error": null},
+    {"name": "SGEMM alpha=2.5 beta=0.5", "passed": true, "ms": 0.5, "error": null},
+    {"name": "BLAS SAXPY", "passed": true, "ms": 0.0, "error": null},
+    {"name": "BLAS SDOT", "passed": true, "ms": 0.0, "error": null},
+    {"name": "BLAS SNRM2", "passed": true, "ms": 0.0, "error": null},
+    {"name": "Large allocation (up to 1GB)", "passed": true, "ms": 2181.1, "error": null},
+    {"name": "Rapid kernels (10K dispatches)", "passed": true, "ms": 1760.3, "error": null},
+    {"name": "500 concurrent buffers", "passed": true, "ms": 2.8, "error": null}
+  ],
+  "benchmarks": [
+    {"name": "Mem BW (256.0 KB)", "value": 21.5366, "unit": "GB/s", "normalized": 25.8504, "normalized_unit": "GB/s @DDR4-3200x1"},
+    {"name": "Mem BW (1.0 MB)", "value": 11.1108, "unit": "GB/s", "normalized": 13.3363, "normalized_unit": "GB/s @DDR4-3200x1"},
+    {"name": "Mem BW (4.0 MB)", "value": 6.7750, "unit": "GB/s", "normalized": 8.1320, "normalized_unit": "GB/s @DDR4-3200x1"},
+    {"name": "Mem BW (16.0 MB)", "value": 4.2632, "unit": "GB/s", "normalized": 5.1171, "normalized_unit": "GB/s @DDR4-3200x1"},
+    {"name": "VecAdd (39.1 KB)", "value": 0.0367, "unit": "GB/s", "normalized": 0.0441, "normalized_unit": "GB/s @DDR4-3200x1"},
+    {"name": "VecAdd (390.6 KB)", "value": 0.0390, "unit": "GB/s", "normalized": 0.0468, "normalized_unit": "GB/s @DDR4-3200x1"},
+    {"name": "VecAdd (3.8 MB)", "value": 0.0604, "unit": "GB/s", "normalized": 0.0725, "normalized_unit": "GB/s @DDR4-3200x1"},
+    {"name": "SGEMM 128x128", "value": 1633469156.4063, "unit": "FLOPS", "normalized": 0.6534, "normalized_unit": "GFLOPS/core/GHz"},
+    {"name": "SGEMM 256x256", "value": 1571374749.2236, "unit": "FLOPS", "normalized": 0.6286, "normalized_unit": "GFLOPS/core/GHz"},
+    {"name": "SGEMM 512x512", "value": 1120298940.2809, "unit": "FLOPS", "normalized": 0.4481, "normalized_unit": "GFLOPS/core/GHz"},
+    {"name": "SGEMM 1024x1024", "value": 604270083.6635, "unit": "FLOPS", "normalized": 0.2417, "normalized_unit": "GFLOPS/core/GHz"},
+    {"name": "SGEMM 2048x2048", "value": 208916149.3240, "unit": "FLOPS", "normalized": 0.0836, "normalized_unit": "GFLOPS/core/GHz"},
+    {"name": "Kernel latency", "value": 0.5256, "unit": "us", "normalized": 0.5256, "normalized_unit": "us"},
+    {"name": "Alloc+Free (4KB)", "value": 5937572.3642, "unit": "ops/s", "normalized": 5937572.3642, "normalized_unit": "ops/s"}
+  ]
+}
+--- JSON_END ---
+
+Compatibility proof exited with code: 0
+
+Starting limits proof at Mon Feb 16 17:29:05 UTC 2026
+╔══════════════════════════════════════════════════════════════╗
+║       INVISIBLE CUDA — Scientific Limits Proof (v1)        ║
+╚══════════════════════════════════════════════════════════════╝
+
+System:
+  OS:   linux
+  Arch: x86_64
+  Mode: standard
+Hardware Fingerprint:
+  CPU:          Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz
+  Cores:        2 logical, 1 physical
+  Frequency:    2500 MHz
+  RAM:          1.9 GB
+  Memory:       DDR4 @ 2666 MT/s, 1 channel(s)
+  Peak BW:      21.3 GB/s (theoretical)
+  NUMA:         1 node(s)
+  Cache:        L1d=32 KiB (1 instance) L1i=32 KiB (1 instance) L2=1 MiB (1 instance) L3=35.8 MiB (1 instance)
+  ISA:          sse4_2 avx avx2 avx512f
+  Storage:      NVMe SSD (8G)
+  Kernel:       6.1.161-183.298.amzn2023.x86_64
+  Microcode:    0x5003901
+
+Backend: CPU
+Device:  CPU (2 threads)
+Compute: 2 units, warp_size=1
+Features: shared_mem=true atomics=true fp16=false
+
+═══ Category 1: HARD LIMITS ════════════════════════════════════
+  (CUDA features that CANNOT work without NVIDIA hardware)
+
+  [FAIL] Tensor Cores (WMMA) (0.0ms) — WMMA ops return 0.0 (stub) — no tensor core hardware [CUDA-only]
+         evidence: result[0]=1, all_zeros=false, all_unchanged=true. Real CUDA would produce matmul output.
+  [FAIL] Texture Sampling (2D/3D) (0.0ms) — TexSample2D returns 0.0 — no texture unit hardware [CUDA-only]
+         evidence: TexSample2D(0.5, 0.5) → 0 (expected: interpolated texture value)
+  [FAIL] Surface Load/Store (0.0ms) — SurfLoad returns 0.0 — no surface memory hardware [CUDA-only]
+         evidence: SurfLoad(0,0) → 0 (expected: surface data)
+  [FAIL] Async Copy (cp.async) (0.0ms) — AsyncCopy is a no-op — data not transferred [CUDA-only]
+         evidence: dst after copy: [0.0, 0.0, 0.0, 0.0] (expected [1.0, 2.0, 3.0, 4.0])
+  [FAIL] MBarrier (Named Barriers) (0.0ms) — Compiles but MBarrier ops are no-ops — no hardware barrier unit [CUDA-only]
+         evidence: MBarrierInit/Arrive/TestWait all return 0.0 on CPU
+
+═══ Category 2: SEMANTIC GAPS ══════════════════════════════════
+  (Features that WORK but BEHAVE DIFFERENTLY than real CUDA)
+
+  [DEGR] Warp Shuffle (shfl.down) (0.0ms) — Returns identity (warp_size=1) — no cross-lane shuffle
+         evidence: 32 lanes: identity=32, shifted=0/31 | result[0]=1 (input[0]=1, input[1]=2)
+  [DEGR] Warp Vote (ballot/all/any) (0.0ms) — Single-lane semantics: ballot returns 0/1, not 32-bit bitmask
+         evidence: VoteBallot(all_positive): result[0]=1 bits=0x3F800000 | Real CUDA: 0xFFFFFFFF (NaN)
+  [DEGR] Warp Identity (LaneId/WarpId/NWarps) (0.0ms) — LaneId=0, WarpId=0, NWarps=1 for all threads (no warp structure)
+         evidence: 64 threads: LaneId values = [0, 0, 0, ... 0, 0] (CUDA: 0,1,2...31,0,1...31)
+  [DEGR] Barrier + Shared Memory Visibility (0.0ms) — Barrier is no-op, shared mem is per-thread — works only for simple patterns
+         evidence: After barrier: 32/32 threads read 42.0 from shared[0]. Real CUDA: per-block shared memory, CPU: per-thread copy.
+  [DEGR] Control Flow (Branch/BranchIf) (0.0ms) — Branches ignored — all IR ops execute linearly, last write wins
+         evidence: input=3.0, cond=(3>5)=false → small path (×2=6.0). Got 30. CPU executes ALL ops (Branch ignored), so big path (×10=30.0) overwrites.
+  [DEGR] 2D/3D Grid Dimensions (0.0ms) — Y/Z thread dims execute but output indexing uses only X dimension
+         evidence: 4x4 block: result[0..4]=[3.0, 3.0, 3.0, 3.0] | CPU uses 1D output offset (global_x only)
+
+═══ Category 3: PRECISION BOUNDARIES ═══════════════════════════
+  (Numerical accuracy differences between CPU and GPU)
+
+  [DEGR] Transcendental Functions (sin/cos/exp/log/sqrt/tanh) (0.7ms) — Max 520764 ULP error — exceeds CUDA spec
+         evidence: sin=520764 cos=0 exp=2 log=1 sqrt=1 tanh=1 ULP | CUDA fast math: ~2 ULP
+  [OK  ] FMA vs Mul+Add Precision (0.0ms)
+         evidence: 1.0000001 * 1.0000001 - 1.0 | FMA=2.3841857910e-7 err=3.84e-8 | Mul+Add=2.3841857910e-7 err=3.84e-8 | ref=2.0000001011e-7
+  [OK  ] FP16 Conversion Accuracy (0.1ms)
+         evidence: has_fp16=false | max relative error: 0.0549% | 11 test values, 0 with >1% error
+  [DEGR] Special Float Values (NaN/Inf/denorm/-0) (0.0ms) — 1 issue(s): MAX+1.0=340282350000000000000000000000000000000 (expected Inf)
+         evidence: Tested 8 special pairs. Issues: MAX+1.0=340282350000000000000000000000000000000 (expected Inf)
+  [OK  ] Accumulated Error (100 chained FMAs) (0.0ms)
+         evidence: 100× FMA(x, 1.00001, 0.00001) from 1.0: got 1.0020027161 (f64 ref: 1.0020009903), err=1.72e-6
+
+═══ Category 4: PERFORMANCE SCALING ════════════════════════════
+  (Proportional performance differences vs CUDA)
+  NOTE: These numbers are INFORMATIONAL, not pass/fail criteria.
+  Variations reflect memory class (DDR4@2666MT/s) and core count (1).
+  Normalized values (where applicable) adjust for memory bandwidth.
+
+  [DEGR] Parallelism Scaling (VecAdd) (14088.1ms) — 1.6x actual vs 977x ideal scaling
+         evidence: 1024→3.4M elem/s, 10000→4.8M elem/s, 100000→5.4M elem/s, 1000000→5.4M elem/s | scaling: 1.6x (ideal 977x) | CUDA GPUs: ~100x scaling 1K→1M
+  [OK  ] Memory Bandwidth Profile (904.1ms)
+         evidence: 4.0 KB:28.9 GB/s, 32.0 KB:24.3 GB/s, 256.0 KB:21.8 GB/s, 4.0 MB:15.2 GB/s, 32.0 MB:2.1 GB/s | peak=28.9 GB/s | CUDA A100 HBM2: ~900 GB/s, CPU DDR5: ~60 GB/s
+  [OK  ] Kernel Launch Overhead (10.3ms)
+         evidence: launch+sync: 0.51 us | batch launch: 0.51 us | CUDA: ~5-10 us, CPU: ~0.1-1 us
+  [OK  ] BLAS SGEMM Scaling (GFLOPS) (16741.2ms)
+         evidence: 64x64:1.5, 128x128:1.5, 256x256:1.4, 512x512:1.1, 1024x1024:0.6 GFLOPS | peak=1.5 | CUDA A100: ~19,500 GFLOPS, CPU: 200-800 GFLOPS
+
+═══ Category 5: EDGE CASES & BREAKING POINTS ═══════════════════
+  (Where things break under extreme conditions)
+
+/var/lib/cloud/instance/scripts/part-001: line 68: 25414 Killed                  INVISIBLE_CUDA_BACKEND=cpu PROOF_MODE=$PROOF_MODE /tmp/limits_proof
+
+Limits proof exited with code: 137
+
+Starting coverage proof at Mon Feb 16 17:29:47 UTC 2026
+╔══════════════════════════════════════════════════════════════╗
+║     INVISIBLE CUDA — Library Coverage Proof (v1)           ║
+╚══════════════════════════════════════════════════════════════╝
+
+System:
+  OS:   linux
+  Arch: x86_64
+  CPU:  Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz
+  Cores: 2
+  RAM:  1959256 kB
+
+═══ Tier 1: Core CUDA Libraries (22 modules) ══════════════════
+
+  [PASS] cuBLAS (8/8 APIs, 14.0ms)
+         create+sgemm+saxpy+destroy | all OK
+  [PASS] cuBLASLt (5/5 APIs, 0.0ms)
+         create+layout_create+destroy | all OK
+  [PASS] cuDNN (6/6 APIs, 0.0ms)
+         create+tensor_desc+set_4d+destroy | all OK
+  [PASS] cuFFT (4/4 APIs, 0.0ms)
+         plan_1d+plan_2d+destroy | all OK
+  [PASS] cuSPARSE (4/4 APIs, 0.0ms)
+         create+set_stream+destroy | all OK
+  [PASS] cuRAND (5/5 APIs, 0.0ms)
+         create_generator+seed+host_gen+destroy | all OK
+  [PASS] cuSOLVER (4/4 APIs, 0.0ms)
+         create+getrf_buffer_size+destroy | all OK
+  [PASS] cuTENSOR (3/3 APIs, 0.0ms)
+         create+destroy | all OK
+  [PASS] NCCL (4/4 APIs, 0.0ms)
+         unique_id+comm_init+comm_destroy | all OK
+  [PASS] NVML (4/4 APIs, 0.0ms)
+         init+driver_version+shutdown | all OK
+  [PASS] Thrust/CUB (2/2 APIs, 0.0ms)
+         new+get_version | all OK
+  [PASS] NVRTC (5/5 APIs, 1.3ms)
+         create_program+compile+get_ptx+destroy | all OK
+  [PASS] NVENC (2/2 APIs, 0.0ms)
+         open_encode_session | all OK
+  [PASS] NVDEC (2/2 APIs, 0.0ms)
+         new() | all OK
+  [PASS] nvJPEG (4/4 APIs, 0.0ms)
+         create_simple+create+destroy | all OK
+  [PASS] nvJPEG2K (3/3 APIs, 0.0ms)
+         create_simple+destroy | all OK
+  [PASS] NPP (2/2 APIs, 0.0ms)
+         new+get_stream_context | all OK
+  [PASS] cuSPARSELt (3/3 APIs, 0.0ms)
+         init+destroy | all OK
+  [PASS] TensorRT (4/4 APIs, 0.0ms)
+         create_logger+create_builder+destroy | all OK
+  [PASS] NVTX (5/5 APIs, 0.0ms)
+         domain_create+register+enable+destroy | all OK
+  [PASS] cuFile (4/4 APIs, 0.0ms)
+         driver_open+get_props+driver_close | all OK
+  [PASS] NvOF (3/3 APIs, 0.0ms)
+         create_optical_flow+destroy | all OK
+
+═══ Tier 2: Specialized Rendering & Vision (10 modules) ═══════
+
+  [PASS] nvdiffrast (3/3 APIs, 0.0ms)
+         create_context+destroy | all OK
+  [PASS] spconv (3/3 APIs, 0.0ms)
+         create_context+destroy | all OK
+  [PASS] gaussian_rast (3/3 APIs, 0.0ms)
+         create_context+destroy | all OK
+  [PASS] flash_attn (3/3 APIs, 0.0ms)
+         create_context+destroy | all OK
+  [PASS] nerfacc (3/3 APIs, 0.0ms)
+         create_context+destroy | all OK
+  [PASS] bitsandbytes (3/3 APIs, 0.0ms)
+         create_context+destroy | all OK
+  [PASS] detectron2_ops (3/3 APIs, 0.0ms)
+         create_context+destroy | all OK
+  [PASS] pointnet (3/3 APIs, 0.0ms)
+         create_context+destroy | all OK
+  [PASS] pytorch3d (3/3 APIs, 0.0ms)
+         create_context+destroy | all OK
+  [PASS] faiss_gpu (3/3 APIs, 0.0ms)
+         create_context+destroy | all OK
+
+═══ Tier 3: Scientific Computing (4 modules) ══════════════════
+
+  [PASS] molecular_dynamics (3/3 APIs, 0.0ms)
+         create_context+destroy | all OK
+  [PASS] gpu_crypto (3/3 APIs, 0.0ms)
+         create_context+destroy | all OK
+  [PASS] rapids (3/3 APIs, 0.0ms)
+         create_context+destroy | all OK
+  [PASS] audio_ops (3/3 APIs, 0.0ms)
+         create_context+destroy | all OK
+
+═══ Tier 4: Advanced Kernels & Research (10 modules) ══════════
+
+  [PASS] cutlass (3/3 APIs, 0.0ms)
+         create_context+destroy | all OK
+  [PASS] triton_kernels (3/3 APIs, 0.0ms)
+         create_context+destroy | all OK
+  [PASS] apex (3/3 APIs, 0.0ms)
+         create_context+destroy | all OK
+  [PASS] tiny_cuda_nn (3/3 APIs, 0.0ms)
+         create_context+destroy | all OK
+  [PASS] xformers (3/3 APIs, 0.0ms)
+         create_context+destroy | all OK
+  [PASS] warp_sim (3/3 APIs, 0.0ms)
+         create_context+destroy | all OK
+  [PASS] kaolin (3/3 APIs, 0.0ms)
+         create_context+destroy | all OK
+  [PASS] cu_quantum (3/3 APIs, 0.0ms)
+         create_context(4 qubits)+destroy | all OK
+  [PASS] dali (3/3 APIs, 0.0ms)
+         create_context+destroy | all OK
+  [PASS] cu_dss (3/3 APIs, 0.0ms)
+         create_context+destroy | all OK
+
+═══ HIP/ROCm Compatibility Layer ═════════════════════════════
+
+  [PASS] HIP/ROCm (6/6 APIs, 36.2ms)
+         init+device_count+device+error_name | all OK
+
+═══════════════════════════════════════════════════════════════
+  SUMMARY
+═══════════════════════════════════════════════════════════════
+  Libraries tested: 47
+  PASS: 47 | STUB: 0 | FAIL: 0
+  APIs tested: 164 | APIs passed: 164 (100.0%)
+  Total time: 110.1ms
+
+
+--- JSON_START ---
+{
+  "format": "invisible-cuda-coverage-v1",
+  "os": "linux",
+  "arch": "x86_64",
+  "total_libraries": 47,
+  "pass": 47,
+  "stub": 0,
+  "fail": 0,
+  "total_apis_tested": 164,
+  "total_apis_passed": 164,
+  "libraries": [
+    {"tier": "TIER1", "library": "cuBLAS", "status": "pass", "apis_tested": 8, "apis_passed": 8, "ms": 14.0, "detail": "", "evidence": "create+sgemm+saxpy+destroy | all OK"},
+    {"tier": "TIER1", "library": "cuBLASLt", "status": "pass", "apis_tested": 5, "apis_passed": 5, "ms": 0.0, "detail": "", "evidence": "create+layout_create+destroy | all OK"},
+    {"tier": "TIER1", "library": "cuDNN", "status": "pass", "apis_tested": 6, "apis_passed": 6, "ms": 0.0, "detail": "", "evidence": "create+tensor_desc+set_4d+destroy | all OK"},
+    {"tier": "TIER1", "library": "cuFFT", "status": "pass", "apis_tested": 4, "apis_passed": 4, "ms": 0.0, "detail": "", "evidence": "plan_1d+plan_2d+destroy | all OK"},
+    {"tier": "TIER1", "library": "cuSPARSE", "status": "pass", "apis_tested": 4, "apis_passed": 4, "ms": 0.0, "detail": "", "evidence": "create+set_stream+destroy | all OK"},
+    {"tier": "TIER1", "library": "cuRAND", "status": "pass", "apis_tested": 5, "apis_passed": 5, "ms": 0.0, "detail": "", "evidence": "create_generator+seed+host_gen+destroy | all OK"},
+    {"tier": "TIER1", "library": "cuSOLVER", "status": "pass", "apis_tested": 4, "apis_passed": 4, "ms": 0.0, "detail": "", "evidence": "create+getrf_buffer_size+destroy | all OK"},
+    {"tier": "TIER1", "library": "cuTENSOR", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create+destroy | all OK"},
+    {"tier": "TIER1", "library": "NCCL", "status": "pass", "apis_tested": 4, "apis_passed": 4, "ms": 0.0, "detail": "", "evidence": "unique_id+comm_init+comm_destroy | all OK"},
+    {"tier": "TIER1", "library": "NVML", "status": "pass", "apis_tested": 4, "apis_passed": 4, "ms": 0.0, "detail": "", "evidence": "init+driver_version+shutdown | all OK"},
+    {"tier": "TIER1", "library": "Thrust/CUB", "status": "pass", "apis_tested": 2, "apis_passed": 2, "ms": 0.0, "detail": "", "evidence": "new+get_version | all OK"},
+    {"tier": "TIER1", "library": "NVRTC", "status": "pass", "apis_tested": 5, "apis_passed": 5, "ms": 1.3, "detail": "", "evidence": "create_program+compile+get_ptx+destroy | all OK"},
+    {"tier": "TIER1", "library": "NVENC", "status": "pass", "apis_tested": 2, "apis_passed": 2, "ms": 0.0, "detail": "", "evidence": "open_encode_session | all OK"},
+    {"tier": "TIER1", "library": "NVDEC", "status": "pass", "apis_tested": 2, "apis_passed": 2, "ms": 0.0, "detail": "", "evidence": "new() | all OK"},
+    {"tier": "TIER1", "library": "nvJPEG", "status": "pass", "apis_tested": 4, "apis_passed": 4, "ms": 0.0, "detail": "", "evidence": "create_simple+create+destroy | all OK"},
+    {"tier": "TIER1", "library": "nvJPEG2K", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_simple+destroy | all OK"},
+    {"tier": "TIER1", "library": "NPP", "status": "pass", "apis_tested": 2, "apis_passed": 2, "ms": 0.0, "detail": "", "evidence": "new+get_stream_context | all OK"},
+    {"tier": "TIER1", "library": "cuSPARSELt", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "init+destroy | all OK"},
+    {"tier": "TIER1", "library": "TensorRT", "status": "pass", "apis_tested": 4, "apis_passed": 4, "ms": 0.0, "detail": "", "evidence": "create_logger+create_builder+destroy | all OK"},
+    {"tier": "TIER1", "library": "NVTX", "status": "pass", "apis_tested": 5, "apis_passed": 5, "ms": 0.0, "detail": "", "evidence": "domain_create+register+enable+destroy | all OK"},
+    {"tier": "TIER1", "library": "cuFile", "status": "pass", "apis_tested": 4, "apis_passed": 4, "ms": 0.0, "detail": "", "evidence": "driver_open+get_props+driver_close | all OK"},
+    {"tier": "TIER1", "library": "NvOF", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_optical_flow+destroy | all OK"},
+    {"tier": "TIER2", "library": "nvdiffrast", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context+destroy | all OK"},
+    {"tier": "TIER2", "library": "spconv", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context+destroy | all OK"},
+    {"tier": "TIER2", "library": "gaussian_rast", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context+destroy | all OK"},
+    {"tier": "TIER2", "library": "flash_attn", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context+destroy | all OK"},
+    {"tier": "TIER2", "library": "nerfacc", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context+destroy | all OK"},
+    {"tier": "TIER2", "library": "bitsandbytes", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context+destroy | all OK"},
+    {"tier": "TIER2", "library": "detectron2_ops", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context+destroy | all OK"},
+    {"tier": "TIER2", "library": "pointnet", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context+destroy | all OK"},
+    {"tier": "TIER2", "library": "pytorch3d", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context+destroy | all OK"},
+    {"tier": "TIER2", "library": "faiss_gpu", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context+destroy | all OK"},
+    {"tier": "TIER3", "library": "molecular_dynamics", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context+destroy | all OK"},
+    {"tier": "TIER3", "library": "gpu_crypto", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context+destroy | all OK"},
+    {"tier": "TIER3", "library": "rapids", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context+destroy | all OK"},
+    {"tier": "TIER3", "library": "audio_ops", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context+destroy | all OK"},
+    {"tier": "TIER4", "library": "cutlass", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context+destroy | all OK"},
+    {"tier": "TIER4", "library": "triton_kernels", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context+destroy | all OK"},
+    {"tier": "TIER4", "library": "apex", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context+destroy | all OK"},
+    {"tier": "TIER4", "library": "tiny_cuda_nn", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context+destroy | all OK"},
+    {"tier": "TIER4", "library": "xformers", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context+destroy | all OK"},
+    {"tier": "TIER4", "library": "warp_sim", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context+destroy | all OK"},
+    {"tier": "TIER4", "library": "kaolin", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context+destroy | all OK"},
+    {"tier": "TIER4", "library": "cu_quantum", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context(4 qubits)+destroy | all OK"},
+    {"tier": "TIER4", "library": "dali", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context+destroy | all OK"},
+    {"tier": "TIER4", "library": "cu_dss", "status": "pass", "apis_tested": 3, "apis_passed": 3, "ms": 0.0, "detail": "", "evidence": "create_context+destroy | all OK"},
+    {"tier": "HIP", "library": "HIP/ROCm", "status": "pass", "apis_tested": 6, "apis_passed": 6, "ms": 36.2, "detail": "", "evidence": "init+device_count+device+error_name | all OK"}
+  ]
+}
+--- JSON_END ---
+
+Coverage proof exited with code: 0
+All proofs completed at Mon Feb 16 17:29:47 UTC 2026
