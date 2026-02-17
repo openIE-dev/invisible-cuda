@@ -4,6 +4,24 @@
 
 We deployed CUDA test suites to 33 EC2 instance types — ARM and x86, bare metal and virtualized, GPU instances with no NVIDIA drivers installed — and every test passed.
 
+## Quick Start
+
+Install the runtime and run a proof in your language of choice:
+
+```bash
+# Install
+cargo install invisible-cuda
+invisible-cuda install
+
+# Run proof (pick one)
+cd examples/c    && make && ./proof          # C
+cd examples/go   && go run main.go           # Go
+cd examples/rust && cargo run --release      # Rust (SDK)
+cd examples/python && pip install -r requirements.txt && python proof.py  # Python (SDK)
+```
+
+All 10 examples test the same CUDA APIs: device discovery, memory operations, streams, events, cuBLAS SGEMM, and bandwidth benchmarks. See [`examples/README.md`](examples/README.md) for the full list.
+
 ## Results
 
 | Instance | Arch | CPU | Cores | RAM | GPU | $/hr | Result |
@@ -45,19 +63,28 @@ We deployed CUDA test suites to 33 EC2 instance types — ARM and x86, bare meta
 
 ## Installation
 
-### macOS (Apple Silicon)
-
-**DMG installer (recommended):**
-
-Download `InvisibleCUDA-0.1.0.dmg` from the [latest release](https://github.com/openIE-dev/invisible-cuda/releases/latest), open it, drag to Applications, and click "Install Now". The daemon installs the dylib to `~/.invisible-cuda/lib/` and sets up the library path.
-
-**Homebrew:**
+### Cargo (recommended)
 
 ```bash
-brew install --cask invisible-cuda
+cargo install invisible-cuda
+invisible-cuda install
 ```
 
-**Tarball:**
+This downloads the pre-built runtime for your platform from GitHub Releases and installs it to `~/.invisible-cuda/`.
+
+### pip
+
+```bash
+pip install invisible-cuda
+```
+
+### npm
+
+```bash
+npm install -g invisible-cuda
+```
+
+### macOS (Apple Silicon) — Tarball
 
 ```bash
 curl -LO https://github.com/openIE-dev/invisible-cuda/releases/download/v0.1.0/invisible-cuda-0.1.0-darwin-arm64.tar.gz
@@ -65,7 +92,7 @@ tar xzf invisible-cuda-0.1.0-darwin-arm64.tar.gz
 ./install.sh
 ```
 
-### Linux x86_64
+### Linux x86_64 — Tarball
 
 ```bash
 curl -LO https://github.com/openIE-dev/invisible-cuda/releases/download/v0.1.0/invisible-cuda-0.1.0-linux-x86_64.tar.gz
@@ -73,7 +100,7 @@ tar xzf invisible-cuda-0.1.0-linux-x86_64.tar.gz
 ./install.sh
 ```
 
-### Linux aarch64
+### Linux aarch64 — Tarball
 
 ```bash
 curl -LO https://github.com/openIE-dev/invisible-cuda/releases/download/v0.1.0/invisible-cuda-0.1.0-linux-aarch64.tar.gz
@@ -81,32 +108,45 @@ tar xzf invisible-cuda-0.1.0-linux-aarch64.tar.gz
 ./install.sh
 ```
 
-### Manual
-
-```bash
-mkdir -p ~/.invisible-cuda/lib
-cp lib/libcuda_dylib.* ~/.invisible-cuda/lib/libcuda.dylib  # macOS
-cp lib/libcuda_dylib.* ~/.invisible-cuda/lib/libcuda.so      # Linux
-
-# Add to shell config:
-export DYLD_LIBRARY_PATH="$HOME/.invisible-cuda/lib:$DYLD_LIBRARY_PATH"  # macOS
-export LD_LIBRARY_PATH="$HOME/.invisible-cuda/lib:$LD_LIBRARY_PATH"      # Linux
-```
-
 ### Environment Override
 
 Set `INVISIBLE_CUDA_LIB` to point to the dylib directly:
 
 ```bash
-export INVISIBLE_CUDA_LIB=/path/to/libcuda_dylib.dylib  # macOS
-export INVISIBLE_CUDA_LIB=/path/to/libcuda_dylib.so      # Linux
+export INVISIBLE_CUDA_LIB=/path/to/libcuda.dylib  # macOS
+export INVISIBLE_CUDA_LIB=/path/to/libcuda.so      # Linux
 ```
+
+## Examples — 10 Languages
+
+Every example loads the Invisible CUDA runtime via its language's FFI and runs the same test suite. Pick whichever you're comfortable with:
+
+| Language | FFI Mechanism | Directory | Run Command |
+|----------|---------------|-----------|-------------|
+| **C** | `dlopen` | [`examples/c/`](examples/c/) | `make && ./proof` |
+| **Go** | cgo + `dlopen` | [`examples/go/`](examples/go/) | `go run main.go` |
+| **Java** | Panama FFM | [`examples/java/`](examples/java/) | `java --enable-native-access=ALL-UNNAMED Proof.java` |
+| **Swift** | `dlopen` | [`examples/swift/`](examples/swift/) | `swift run -c release` |
+| **C#** | P/Invoke | [`examples/csharp/`](examples/csharp/) | `dotnet run -c Release` |
+| **Zig** | `@cImport` | [`examples/zig/`](examples/zig/) | `zig build run -Doptimize=ReleaseFast` |
+| **Julia** | `ccall` | [`examples/julia/`](examples/julia/) | `julia proof.jl` |
+| **Rust** | SDK crate | [`examples/rust/`](examples/rust/) | `cargo run --release` |
+| **Python** | SDK (ctypes) | [`examples/python/`](examples/python/) | `pip install -r requirements.txt && python proof.py` |
+| **TypeScript** | SDK (koffi) | [`examples/typescript/`](examples/typescript/) | `npm install && npx tsx proof.ts` |
+
+Each proof tests:
+- **Device Discovery** — device count, properties, memory info, runtime version
+- **Memory Operations** — malloc/free, memcpy roundtrip (host-to-device + device-to-host), memset
+- **Streams & Events** — stream lifecycle, event timing
+- **cuBLAS** — SGEMM identity multiply (A * I = A)
+- **Performance** — memory bandwidth (4 MB roundtrip)
 
 ## What's in This Repository
 
 | Directory | Contents |
 |-----------|----------|
-| [`proof/`](proof/) | Source code for all proof binaries (compatibility, coverage, limits, distributed) |
+| [`examples/`](examples/) | Runnable proof examples in 10 languages |
+| [`proof/`](proof/) | Source code for the EC2 proof binaries (compatibility, coverage, limits, distributed) |
 | [`results/raw/`](results/raw/) | Complete, unmodified output from all 33 instance runs |
 | [`infra/`](infra/) | EC2 orchestration script (wave-based deployment) |
 | [`EXPERIMENT.md`](EXPERIMENT.md) | Full experimental design and methodology |

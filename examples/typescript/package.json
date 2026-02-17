@@ -1,0 +1,15 @@
+{
+  "name": "invisible-cuda-proof",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "proof": "npx tsx proof.ts"
+  },
+  "dependencies": {
+    "invisible-cuda": "^0.1.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.0"
+  }
+}
