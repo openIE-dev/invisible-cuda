@@ -43,6 +43,65 @@ We deployed CUDA test suites to 33 EC2 instance types — ARM and x86, bare meta
 
 **Additionally**: 47/47 CUDA library modules passed on every instance. A distributed cluster test passed across heterogeneous x86 + ARM workers.
 
+## Installation
+
+### macOS (Apple Silicon)
+
+**DMG installer (recommended):**
+
+Download `InvisibleCUDA-0.1.0.dmg` from the [latest release](https://github.com/openIE-dev/invisible-cuda/releases/latest), open it, drag to Applications, and click "Install Now". The daemon installs the dylib to `~/.invisible-cuda/lib/` and sets up the library path.
+
+**Homebrew:**
+
+```bash
+brew install --cask invisible-cuda
+```
+
+**Tarball:**
+
+```bash
+curl -LO https://github.com/openIE-dev/invisible-cuda/releases/download/v0.1.0/invisible-cuda-0.1.0-darwin-arm64.tar.gz
+tar xzf invisible-cuda-0.1.0-darwin-arm64.tar.gz
+./install.sh
+```
+
+### Linux x86_64
+
+```bash
+curl -LO https://github.com/openIE-dev/invisible-cuda/releases/download/v0.1.0/invisible-cuda-0.1.0-linux-x86_64.tar.gz
+tar xzf invisible-cuda-0.1.0-linux-x86_64.tar.gz
+./install.sh
+```
+
+### Linux aarch64
+
+```bash
+curl -LO https://github.com/openIE-dev/invisible-cuda/releases/download/v0.1.0/invisible-cuda-0.1.0-linux-aarch64.tar.gz
+tar xzf invisible-cuda-0.1.0-linux-aarch64.tar.gz
+./install.sh
+```
+
+### Manual
+
+```bash
+mkdir -p ~/.invisible-cuda/lib
+cp lib/libcuda_dylib.* ~/.invisible-cuda/lib/libcuda.dylib  # macOS
+cp lib/libcuda_dylib.* ~/.invisible-cuda/lib/libcuda.so      # Linux
+
+# Add to shell config:
+export DYLD_LIBRARY_PATH="$HOME/.invisible-cuda/lib:$DYLD_LIBRARY_PATH"  # macOS
+export LD_LIBRARY_PATH="$HOME/.invisible-cuda/lib:$LD_LIBRARY_PATH"      # Linux
+```
+
+### Environment Override
+
+Set `INVISIBLE_CUDA_LIB` to point to the dylib directly:
+
+```bash
+export INVISIBLE_CUDA_LIB=/path/to/libcuda_dylib.dylib  # macOS
+export INVISIBLE_CUDA_LIB=/path/to/libcuda_dylib.so      # Linux
+```
+
 ## What's in This Repository
 
 | Directory | Contents |
